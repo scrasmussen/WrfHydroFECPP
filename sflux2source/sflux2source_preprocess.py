@@ -16,6 +16,7 @@ from mpi4py import MPI
 import time as timer
 import os
 from os import path
+import sys.exit()
 
 #this script requires hgrid.utm, hgrid.ll, sflux2source.prop, and netcdf precipitation file
 #this path should include all of those files; if it doesn't, paths will need to be adjusted below
@@ -231,6 +232,10 @@ def process_area_cor(area_cor_file, lat, lon, t, simplex, propPoints):
 
 #read in Delaunay triangulation data if it exists or calculate and save data if it does not
 def process_delaunay(delaunay_file, points):
+    p_f = open("points", 'wb')
+    pickle.dump(points, p_f)
+    sys.exit()
+
     if path.exists(delaunay_file):
         print("Reading Delaunay triangulation points from file")
         delaunay_f = open(delaunay_file, 'rb')
